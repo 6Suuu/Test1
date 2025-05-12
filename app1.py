@@ -52,7 +52,7 @@ def load_models():
     blip_model = Blip2ForConditionalGeneration.from_pretrained(
        Config.BLIP2_MODEL,
          torch_dtype=Config.TORCH_DTYPE,
-         device=Config.DEVICE
+         device_map=Config.DEVICE
     )
 
     llava_processor = AutoProcessor.from_pretrained(Config.LLAVA_MODEL)
@@ -60,7 +60,7 @@ def load_models():
         Config.LLAVA_MODEL,
         quantization_config=Config.BNB_CONFIG if Config.USE_4BIT else None,
         torch_dtype=Config.TORCH_DTYPE,
-        device=Config.DEVICE
+        device_map=Config.DEVICE
     )
 
     return blip_processor, blip_model, llava_processor, llava_model
